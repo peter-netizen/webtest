@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generated="20200217 17:50:59.561" generator="Robot 3.1.2 (Python 2.7.17 on win32)">
+<suite source="C:\Python270\RIDE\Project1\Project1\Project1\TestSuite1.txt" id="s1" name="TestSuite1">
+<test id="s1-t1" name="Test1">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>https://autocomm.internetbrands.com/ac/products_3938/</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20200217 17:50:59.984" level="INFO">Opening browser 'chrome' to base url 'https://autocomm.internetbrands.com/ac/products_3938/'.</msg>
+<status status="PASS" endtime="20200217 17:51:06.676" starttime="20200217 17:50:59.984"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20200217 17:51:11.677" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20200217 17:51:11.677" starttime="20200217 17:51:06.676"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20200217 17:51:13.964" starttime="20200217 17:51:11.678"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Completed successfully Peter</arg>
+</arguments>
+<status status="PASS" endtime="20200217 17:51:13.968" starttime="20200217 17:51:13.966"></status>
+</kw>
+<tags>
+<tag>Open</tag>
+</tags>
+<status status="PASS" endtime="20200217 17:51:13.969" critical="yes" starttime="20200217 17:50:59.983"></status>
+</test>
+<test id="s1-t2" name="Test2">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20200217 17:51:13.979" level="INFO">Opening browser 'chrome' to base url 'https://opensource-demo.orangehrmlive.com/login'.</msg>
+<status status="PASS" endtime="20200217 17:51:20.323" starttime="20200217 17:51:13.978"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20200217 17:51:22.324" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20200217 17:51:22.324" starttime="20200217 17:51:20.323"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=txtUsername</arg>
+<arg>@{CREDENTIALS}[0]</arg>
+</arguments>
+<msg timestamp="20200217 17:51:22.327" level="INFO">Typing text 'Admin' into text field 'id=txtUsername'.</msg>
+<status status="PASS" endtime="20200217 17:51:22.439" starttime="20200217 17:51:22.326"></status>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=txtPassword</arg>
+<arg>&amp;{LOGIN}[Password]</arg>
+</arguments>
+<msg timestamp="20200217 17:51:22.440" level="INFO">Typing password into text field 'id=txtPassword'.</msg>
+<status status="PASS" endtime="20200217 17:51:22.502" starttime="20200217 17:51:22.439"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>id=btnLogin</arg>
+</arguments>
+<msg timestamp="20200217 17:51:22.502" level="INFO">Clicking button 'id=btnLogin'.</msg>
+<status status="PASS" endtime="20200217 17:51:23.438" starttime="20200217 17:51:22.502"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20200217 17:51:25.439" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20200217 17:51:25.439" starttime="20200217 17:51:23.439"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20200217 17:51:27.693" starttime="20200217 17:51:25.441"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>%{username} ran this test on %{os}</arg>
+</arguments>
+<status status="PASS" endtime="20200217 17:51:27.697" starttime="20200217 17:51:27.695"></status>
+</kw>
+<tags>
+<tag>login</tag>
+</tags>
+<status status="PASS" endtime="20200217 17:51:27.698" critical="yes" starttime="20200217 17:51:13.975"></status>
+</test>
+<status status="PASS" endtime="20200217 17:51:27.704" starttime="20200217 17:50:59.565"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">login</stat>
+<stat fail="0" pass="1">Open</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="TestSuite1" pass="2">TestSuite1</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20200217 17:50:59.554" level="WARN">Automatically parsing other than '*.robot' files is deprecated. Convert 'C:\Python270\RIDE\Project1\Project1\Project1\TestSuite1.txt' to '*.robot' format or use '--extension' to explicitly configure which files to parse.</msg>
+</errors>
+</robot>

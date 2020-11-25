@@ -1,0 +1,95 @@
+*** Settings ***
+Library           SeleniumLibrary
+
+*** Variables ***
+${url}            https://autocomm.internetbrands.com/ac/products_3938/    # site to test login
+@{CREDENTIALS}    Admin    admin123
+&{LOGIN}          Username=hermotest    Password=Pi31416!
+${testurl}        https://ss-testing-automated-exercise.herokuapp.com/add_remove_elements/    # ss test url
+${x}              1
+${DELETEBUTTON}    ${EMPTY}
+${count}          ${EMPTY}
+${testurl2}       https://ss-testing-automated-exercise.herokuapp.com/context_menu    # testing context menu
+${message}        ${EMPTY}
+
+*** Test Cases ***
+OpenCloseSite
+    [Tags]    Open
+    Open Browser    https://www.clublexus.com/forums/    chrome
+    Sleep    5
+    Close Browser
+    Log to console    Completed successfully Peter
+
+Test2
+    [Tags]    login
+    Open Browser    ${url}    chrome
+    Sleep    2
+    InputText    id=txtUsername    @{CREDENTIALS}[0]
+    Input Password    id=txtPassword    &{LOGIN}[Password]
+    Click Button    xpath://input[@type='submit']pREPres
+    Sleep    2
+    Close Browser
+    Log To Console    %{username} ran this test on %{os}
+
+VbLogin
+    [Tags]    login
+    Open Browser    ${url}    chrome
+    Sleep    2
+    InputText    id=navbar_username    &{LOGIN}[Username]
+    Input Password    id=navbar_password    &{LOGIN}[Password]
+    Press Keys    id=navbar_password    TAB+ENTER
+    Sleep    15
+
+Forums-CreateNewThread
+    Open Browser    ${url}    chrome
+    Sleep    2
+    InputText    id=navbar_username    &{LOGIN}[Username]
+    InputPassword    id=navbar_password    &{LOGIN}[Password]
+    Press Keys    id=navbar_password    TAB+ENTER
+    Sleep    15
+    # create a thread in Forum W/O Category 3
+    Press Keys    \    TAB+TAB+TAB+TAB+ENTER
+    Press Keys    \    TAB+TAB+TAB+TAB+ENTER
+    Sleep    5
+    InputText    id=subject    Apple watch testing
+    Press Keys    id=subject    TAB+ENTER    ${dummytext}
+    Sleep    5
+    InputText    xpath: //*[@id="tag_add_input"]    ${dummytags}
+    Click Element    xpath: //*[@id="rb_iconid_10"]
+    Click Element    xpath: //*[@id="vB_Editor_001_save"]
+
+SSTest_AddRemove_Elements
+    Open Browser    ${testurl}    chrome
+
+SS_1_AddRemoveElements
+    Open Browser    ${testurl}    Chrome
+    : FOR    ${x}    IN RANGE    30
+    \    Click Button    xpath:/html/body/div[2]/div/div/button
+    \    Exit For Loop if    ${x}==19
+    \    Log    ending now
+    : FOR    ${x}    IN RANGE    1    30
+    \    SLEEP    1
+    \    Exit For Loop if    ${x}==21
+    \    Set focus to element    xpath:/html/body/div[2]/div/div/div/button[${x}]
+    : FOR    ${x}    IN RANGE    1    30
+    \    SLEEP    1
+    \    Exit For Loop if    ${x}==21
+    \    Click Button    xpath:/html/body/div[2]/div/div/div/button[1]
+    ${count}=    Get Element Count    xpath:/html/body/div[2]/div/div/div/button[1]
+    Run keyword if    ${count}==0    Log to Console    no delete button present
+
+SS_2_ContextMenu
+    Open Browser    ${testurl2}    Chrome
+    Open context menu    xpath://*[@id="hot-spot"]
+    sleep    1
+    ${message}=    Handle Alert    leave
+    Run keyword if    '${message}'=='You selected a context menu'    Log to Console    the alert was display as expected
+    Handle Alert    dismiss
+
+Console
+    Open Browser    ${testurl}    chrome
+    Click Button    xpath:/html/body/div[2]/div/div/button
+    Click Button    xpath:/html/body/div[2]/div/div/button
+    Click Button    xpath:/html/body/div[2]/div/div/button
+    Click Button    xpath:/html/body/div[2]/div/div/button
+    Repeat keyword    5 times    Step 5
